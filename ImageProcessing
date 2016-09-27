@@ -1,0 +1,72 @@
+import numpy as np
+import pylab
+import imageio
+from skimage import novice
+from skimage import data
+picture = novice.open('red.jpg')
+picture1 = np.asarray(imageio.imread("red.jpg"))
+print type(picture1)
+''''video1 = raw_input('Path al primer archivo')
+print('Hello', video1)'''
+def lectRojo(hola):
+    d = 0
+    d=np.sum(hola, axis=0)
+    d=np.sum(d, axis=0)
+    return d
+#print lectRojo(picture)
+def cuadro(z):
+    filename = open("/home/erjomuza/Downloads/1.mp4", "r")
+    vid = imageio.get_reader(filename,  'ffmpeg')
+    image = np.asarray(vid.get_data(z))
+    #Picture recibe un array que se llama image
+    #image = novice.Picture(array=image)
+    #print type(image)
+    #print image.width
+    return image
+    #print type(image)
+k=0
+def comparador():
+    cuadPost = 0
+    cuadAnt = 0
+    j=0
+    for a in range(0, 240):
+        cuadAnt = np.int32(j)
+        cuadPost = np.int32(lectRojo(cuadro(a))[0])
+        if a == 0:
+            cuadAnt = cuadPost
+        print cuadAnt
+        print cuadPost
+        if abs(cuadPost-cuadAnt) > 1000000:
+            print "difieren por mas de 10"
+            print a
+        j=cuadPost
+
+
+print type(lectRojo(picture1))
+comparador()
+
+#print cuadro(60)
+#pylab.imshow(cuadro(60))
+#pylab.show()
+#print lectRojo(cuadro(60))
+#print picture.width
+#lectRojo(picture)
+#pylab.imshow(cuadro(1))
+#pylab.show()
+#http://scikit-image.org/docs/dev/user_guide/numpy_images.html
+#http://scikit-image.org/docs/dev/search.html?q=RGB&check_keywords=yes&area=default
+#http://scikit-image.org/docs/dev/api/skimage.novice.html?highlight=rgb#skimage.novice.Picture.rgb
+#http://scikit-image.org/docs/0.11.x/api/skimage.novice.html
+#http://scikit-image.org/docs/dev/api/skimage.novice.html
+''''t = np.asarray([[[1,1,1],
+        [2,2,0],
+        [0,3,3]],
+        [[1,1,1],
+        [0,2,2],
+        [0,3,3]],
+        [[0,1,1],
+        [0,2,2],
+        [0,3,3]]])
+print t
+print type(t)
+print np.sum(t, axis=0).sum(axis=0)'''''
